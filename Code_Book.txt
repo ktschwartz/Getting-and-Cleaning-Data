@@ -1,0 +1,107 @@
+Code Book
+=========
+
+### The analysis that is run in run_analysis.R is described below.  Note that the analysis requires the dplyr package.  Make sure the package has been installed.
+
+1. Data for both train and test sets was read in using read.table.  For an explanation of the original data see the original code book included at the end of this document.  Then the train and test portions of the data were merged into a single data frame.  
+
+2. The columns containing variables that are the mean or standard deviation of measurements were selected using the the grep command to find Ômean()Õ or Ôstd()Õ in the column names.  The resulting indices were used to extract the appropriate columns into a new data frame.
+
+3. The numerical values for the activities were replaced with the following descriptions:
+
+* 1 = Walking
+* 2 = Walking Upstairs
+* 3 = Walking Downstairs
+* 4 = Sitting
+* 5 = Standing
+* 6 = Laying Down
+
+4. The variable labels provided in the original data set were highly abbreviated so the next step was to replace them with labels that were more descriptive to conform to the standards for a tidy data set.  The sub command was used to systematically replace abbreviations with more readable labels.  The labels are summarized further down.
+
+5. Finally a second tidy data set was created that has the mean for each variable for each activity and each subject.  The dplyr package was used to create a tbl_df version of the tidy data set made in steps 1-4.  The resulting table was grouped on subject and then activity.  Finally the summarise_each function was used to calculate the mean of each column.  Please note that a column depicting whether the sample originated from the train or test group was added in the initial data cleaning step (step 1).  This column was removed when the dplyr table was made to make the sumarise_each function easier to code.
+
+Data Labels in Tidy Data Sets
+Ñ----------------------------
+* Mean of - Denotes that the column represents the mean of the indicated data.  Means were calculated for each activity/subject pairing as described in step 5 above.
+* Time. - The time domain signal that was captured at a constant rate at 50 Hz.
+* Freq. - Resulting frequency from the Fast Fourier Transform
+* Body. - The body component of the acceleration signal.
+* Gravity. - The gravity component of the acceleration signal.
+* Accelerometer. - Measurements were made with the built-in accelerometer.
+* Gyroscope. - Measurements were made with the built-in gyroscope.
+* Jerk - The derived jerk signal from the body linear acceleration and angular velocity.
+* Magnitude - Magnitude of the jerk signals.
+* Mean or StdDev. - Whether the variable was the mean or standard deviation respectively.
+* -x, -Y, or -Z - The X, Y, or Z component of the measurement respectively.
+
+**Code Book that accompanied the original data set.**
+==================================================================
+Human Activity Recognition Using Smartphones Dataset
+Version 1.0
+==================================================================
+Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto.
+Smartlab - Non Linear Complex Systems Laboratory
+DITEN - Università degli Studi di Genova.
+Via Opera Pia 11A, I-16145, Genoa, Italy.
+activityrecognition@smartlab.ws
+www.smartlab.ws
+==================================================================
+
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
+
+For each record it is provided:
+======================================
+
+- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
+- Triaxial Angular velocity from the gyroscope. 
+- A 561-feature vector with time and frequency domain variables. 
+- Its activity label. 
+- An identifier of the subject who carried out the experiment.
+
+The dataset includes the following files:
+=========================================
+
+- 'README.txt'
+
+- 'features_info.txt': Shows information about the variables used on the feature vector.
+
+- 'features.txt': List of all features.
+
+- 'activity_labels.txt': Links the class labels with their activity name.
+
+- 'train/X_train.txt': Training set.
+
+- 'train/y_train.txt': Training labels.
+
+- 'test/X_test.txt': Test set.
+
+- 'test/y_test.txt': Test labels.
+
+The following files are available for the train and test data. Their descriptions are equivalent. 
+
+- 'train/subject_train.txt': Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30. 
+
+- 'train/Inertial Signals/total_acc_x_train.txt': The acceleration signal from the smartphone accelerometer X axis in standard gravity units 'g'. Every row shows a 128 element vector. The same description applies for the 'total_acc_x_train.txt' and 'total_acc_z_train.txt' files for the Y and Z axis. 
+
+- 'train/Inertial Signals/body_acc_x_train.txt': The body acceleration signal obtained by subtracting the gravity from the total acceleration. 
+
+- 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
+
+Notes: 
+======
+- Features are normalized and bounded within [-1,1].
+- Each feature vector is a row on the text file.
+
+For more information about this dataset contact: activityrecognition@smartlab.ws
+
+License:
+========
+Use of this dataset in publications must be acknowledged by referencing the following publication [1] 
+
+[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+
+This dataset is distributed AS-IS and no responsibility implied or explicit can be addressed to the authors or their institutions for its use or misuse. Any commercial use is prohibited.
+
+Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.
