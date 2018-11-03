@@ -18,7 +18,7 @@ Code Book
 
 4. The variable labels provided in the original data set were highly abbreviated so the next step was to replace them with labels that were more descriptive to conform to the standards for a tidy data set.  The sub command was used to systematically replace abbreviations with more readable labels.  The labels are summarized further down.
 
-5. Finally a second tidy data set was created that has the mean for each variable for each activity and each subject.  The dplyr package was used to create a tbl_df version of the tidy data set made in steps 1-4.  The resulting table was grouped on subject and then activity.  Finally the summarise_each function was used to calculate the mean of each column.  Please note that a column depicting whether the sample originated from the train or test group was added in the initial data cleaning step (step 1).  This column was removed when the dplyr table was made to make the sumarise_each function easier to code.
+5. Finally a second tidy data set was created that has the mean for each variable for each activity and each subject.  The dplyr package was used to create a tbl_df version of the tidy data set made in steps 1-4.  The resulting table was grouped on subject and then activity.  Finally the summarise_all function was used to calculate the mean of each column.  Please note that a column depicting whether the sample originated from the train or test group was added in the initial data cleaning step (step 1).  This column was removed when the dplyr table was made to make the sumarise_each function easier to code.
 
 Data Labels in Tidy Data Sets
 Ñ----------------------------

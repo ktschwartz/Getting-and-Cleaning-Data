@@ -70,9 +70,9 @@ colnames(df2) <- sub('Body.Body', 'Body.', colnames(df2), fixed = T)
 #    with the average of each variable for each activity and each subject.
 
 df3 <- df2[, -3]
-df3_tbl <- tbl_df(df3) %>%
+df4_tbl <- tbl_df(df3) %>%
         group_by(Subject, Activity) %>%
-        summarise_each(funs(mean))
+        summarise_all(funs(mean))
 
 colnames(df3_tbl) <- sub('Time.', 'Mean of Time.', colnames(df3_tbl), fixed = T)
 colnames(df3_tbl) <- sub('Freq.', 'Mean of Freq.', colnames(df3_tbl), fixed = T)
